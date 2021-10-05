@@ -3,8 +3,7 @@ package com.example.accountbook;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.ViewPager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -12,9 +11,8 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.EditText;
@@ -22,6 +20,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
@@ -34,22 +33,39 @@ public class MainActivity extends AppCompatActivity {
 
     private FragmentStateAdapter fragmentStateAdapter;
 
+    //frame_main (메인화면) 변수
+    CalendarView calendarView;
+    FloatingActionButton fab_main, fab_camera, fab_writing;
+    TextView txt_outlay, outlay, txt_income, income, txt_total, total;
 
-    private Spinner sp_breakdown;
-    private TextView btn_breakdown;
-    private Spinner sp_catalog;
-    private TextView btn_catalog;
+    //frame_receipt 변수
+    //frame_stats 변수
+
+    //flag_view_income (수입창) 변수
+    TextView in_txt_date, in_txt_price, in_txt_method, in_txt_catalog, in_txt_details;
+    EditText in_editTextDate, in_editTextMoney, in_editTextDetails;
+    private Spinner in_sp_method, in_sp_catalog;
+
+    //flag_view_outcome (지출창) 변수
+    /*TextView out_txt_date, out_txt_price, out_txt_method, out_txt_catalog, out_txt_details;
+    EditText out_editTextDate, out_editTextMoney, out_editTextDetails;
+    private Spinner out_sp_method, out_sp_catalog; */
+
+    //money_input
+   /* TabLayout tabLayout;
+    ViewPager2 pager2;
+    FragmentAdapter frag; */
+
+    //activity_main 화면
+    private BottomNavigationView bottomNavigationView;
+    private FragmentManager fm;
+    private FragmentTransaction ft;
+    private Flag_main_view flagMainView;
+    private Flag_stats_view flagStatsView;
+    private Flag_receipt_view flagReceiptView;
 
     // 디자인들
-    TextView incomeView;
-    TextView outlayView;
-    TextView sumView;
     Button btn_delDB;
-    FloatingActionButton imageButton;
-    CalendarView calendarView;
-    TabLayout tabLayout;
-    ViewPager2 pager2;
-    FragmentAdapter frag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,27 +75,80 @@ public class MainActivity extends AppCompatActivity {
         dbHelper = new DBHelper(this);
         mContext = this;
 
-
-        incomeView = (TextView) findViewById(R.id.incomeView);
-        outlayView = (TextView) findViewById(R.id.outlayView);
-        sumView = (TextView) findViewById(R.id.sumView);
-        imageButton =  findViewById(R.id.ioButton);
+        //frame_main
         calendarView = (CalendarView) findViewById(R.id.calendarView);
-        btn_delDB = (Button) findViewById(R.id.btn_delDB);
-        sp_breakdown = (Spinner)findViewById(R.id.sp_breakdown);
-        btn_breakdown = (TextView)findViewById(R.id.btn_breakdown);
-        sp_catalog = (Spinner)findViewById(R.id.sp_catalog);
-        btn_catalog = (TextView)findViewById(R.id.btn_catalog);
-        tabLayout = findViewById(R.id.tab_layout);
+        fab_main = (FloatingActionButton) findViewById(R.id.fab_main);
+        fab_camera = (FloatingActionButton) findViewById(R.id.fab_camera);
+        fab_writing = (FloatingActionButton) findViewById(R.id.fab_writing);
+        txt_income = (TextView) findViewById(R.id.txt_income);
+        txt_outlay = (TextView) findViewById(R.id.txt_outlay);
+        txt_total = (TextView) findViewById(R.id.txt_total);
+        income = (TextView) findViewById(R.id.income);
+        outlay = (TextView) findViewById(R.id.outlay);
+        total = (TextView) findViewById(R.id.total);
+
+        //버튼을 누르면 화면이 넘어감(fab_main 제외)
+        fab_main.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        fab_writing.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //수입,지출 화면 전환
+                Intent intent = new Intent(getApplicationContext(), MoneyInputActivity.class);
+                startActivity(intent);
+            }
+        });
+        fab_camera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        //flag_view_income
+        /*in_txt_date = (TextView) findViewById(R.id.in_txt_date);
+        in_txt_price = (TextView) findViewById(R.id.in_txt_price);
+        in_txt_method = (TextView) findViewById(R.id.in_txt_method);
+        in_txt_catalog = (TextView) findViewById(R.id.in_txt_catalog);
+        in_txt_details = (TextView) findViewById(R.id.in_txt_details);
+        in_editTextDate = (EditText) findViewById(R.id.in_editTextDate);
+        in_editTextMoney = (EditText) findViewById(R.id.in_editTextMoney);
+        in_editTextDetails = (EditText) findViewById(R.id.in_editTextDetails);
+        in_sp_method = (Spinner) findViewById(R.id.in_sp_method);
+        in_sp_catalog = (Spinner) findViewById(R.id.in_sp_catalog); */
+
+       /* //flag_view_outlay
+        out_txt_date = (TextView) findViewById(R.id.out_txt_date);
+        out_txt_price = (TextView) findViewById(R.id.out_txt_price);
+        out_txt_method = (TextView) findViewById(R.id.out_txt_method);
+        out_txt_catalog = (TextView) findViewById(R.id.out_txt_catalog);
+        out_txt_details = (TextView) findViewById(R.id.out_txt_details);
+        out_editTextDate = (EditText) findViewById(R.id.out_editTextDate);
+        out_editTextMoney = (EditText) findViewById(R.id.out_editTextMoney);
+        out_editTextDetails = (EditText) findViewById(R.id.out_editTextDetails);
+        out_sp_method = (Spinner) findViewById(R.id.out_sp_method);
+        out_sp_catalog = (Spinner) findViewById(R.id.out_sp_catalog); */
+
+       //btn_delDB = (Button) findViewById(R.id.btn_delDB);
+
+     /*   //money_input
+        tabLayout = findViewById(R.id.tablayout);
         pager2 = findViewById(R.id.viewPager);
 
+        //수입,지출 창 viewPager
         FragmentManager fm = getSupportFragmentManager();
         frag = new FragmentAdapter(fm, getLifecycle());
         pager2.setAdapter(frag);
 
+        //탭뷰 텍스트 지정
         tabLayout.addTab(tabLayout.newTab().setText("수입"));
         tabLayout.addTab(tabLayout.newTab().setText("지출"));
 
+        //탭 메뉴 누르면 해당 프래그먼트로 변경됨
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -96,13 +165,13 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
+        //추상클래스, 페이지 바뀔 때 실행
         pager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
                 tabLayout.selectTab(tabLayout.getTabAt(position));
             }
-        });
+        }); */
 
        /* sp_breakdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -156,7 +225,7 @@ public class MainActivity extends AppCompatActivity {
             {
                 // 팝업창 띄우기
                 Dialog dialog = new Dialog(MainActivity.this, android.R.style.Theme_Material_Light_Dialog);
-                dialog.setContentView(R.layout.dialog_edit);
+                dialog.setContentView(R.layout.money_input);
                 EditText et_money = dialog.findViewById(R.id.et_money);
                 //ton btn_income = dialog.findViewById(R.id.btn_income);
                // Button btn_outlay = dialog.findViewById(R.id.btn_outlay);
@@ -205,9 +274,51 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //하단 네비게이션 눌렀을 때 화면 변경 됨
+        bottomNavigationView = findViewById(R.id.bottomNavi);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.action_calender:
+                        setFrag(0);
+                        break;
+                    case R.id.action_stats:
+                        setFrag(1);
+                        break;
+                    case R.id.action_receipt:
+                        setFrag(2);
+                        break;
+                }
+                return true;
+            }
+        });
+        flagMainView = new Flag_main_view();
+        flagReceiptView = new Flag_receipt_view();
+        flagStatsView = new Flag_stats_view();
+        setFrag(0);  // 메인 화면 선택
 
     }
+    //하단 네이게이션 프래그먼트 교체
+    private void setFrag(int i) {
+        fm = getSupportFragmentManager();
+        ft = fm.beginTransaction();
 
+        switch (i) {
+            case 0:
+                ft.replace(R.id.frame, flagMainView);
+                ft.commit();
+                break;
+            case 1:
+                ft.replace(R.id.frame, flagStatsView);
+                ft.commit();
+                break;
+            case 2:
+                ft.replace(R.id.frame, flagReceiptView);
+                ft.commit();
+                break;
+        }
+    }
 
 
 

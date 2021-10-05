@@ -3,15 +3,25 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/lala9/Downloads/Account_Book/Account_Book/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.14583333333333334" />
         <entry key="..\:/Users/lala9/Downloads/Account_Book/Account_Book/app/src/main/res/drawable/ic_baseline_add_circle_24.xml" value="0.21354166666666666" />
         <entry key="..\:/Users/lala9/Downloads/Account_Book/Account_Book/app/src/main/res/drawable/ic_baseline_assessment_24.xml" value="0.21354166666666666" />
         <entry key="..\:/Users/lala9/Downloads/Account_Book/Account_Book/app/src/main/res/drawable/ic_baseline_calendar_today_24.xml" value="0.21354166666666666" />
+        <entry key="..\:/Users/lala9/Downloads/Account_Book/Account_Book/app/src/main/res/drawable/ic_baseline_camera_alt_24.xml" value="0.14583333333333334" />
+        <entry key="..\:/Users/lala9/Downloads/Account_Book/Account_Book/app/src/main/res/drawable/ic_baseline_pen_24.xml" value="0.14583333333333334" />
         <entry key="..\:/Users/lala9/Downloads/Account_Book/Account_Book/app/src/main/res/drawable/ic_baseline_receipt_24.xml" value="0.21354166666666666" />
-        <entry key="..\:/Users/lala9/Downloads/Account_Book/Account_Book/app/src/main/res/layout/activity_main.xml" value="0.2" />
-        <entry key="..\:/Users/lala9/Downloads/Account_Book/Account_Book/app/src/main/res/layout/dialog_edit.xml" value="0.264" />
+        <entry key="..\:/Users/lala9/Downloads/Account_Book/Account_Book/app/src/main/res/drawable/ic_launcher_background.xml" value="0.165625" />
+        <entry key="..\:/Users/lala9/Downloads/Account_Book/Account_Book/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/lala9/Downloads/Account_Book/Account_Book/app/src/main/res/layout/dialog_edit.xml" value="0.176" />
+        <entry key="..\:/Users/lala9/Downloads/Account_Book/Account_Book/app/src/main/res/layout/flag_view_income.xml" value="0.23802083333333332" />
         <entry key="..\:/Users/lala9/Downloads/Account_Book/Account_Book/app/src/main/res/layout/flag_view_outlay.xml" value="0.1796875" />
         <entry key="..\:/Users/lala9/Downloads/Account_Book/Account_Book/app/src/main/res/layout/fragment_blank.xml" value="0.121875" />
+        <entry key="..\:/Users/lala9/Downloads/Account_Book/Account_Book/app/src/main/res/layout/frame_assessment.xml" value="0.14947916666666666" />
         <entry key="..\:/Users/lala9/Downloads/Account_Book/Account_Book/app/src/main/res/layout/frame_calender.xml" value="0.264" />
+        <entry key="..\:/Users/lala9/Downloads/Account_Book/Account_Book/app/src/main/res/layout/frame_main.xml" value="0.264" />
+        <entry key="..\:/Users/lala9/Downloads/Account_Book/Account_Book/app/src/main/res/layout/frame_receipt.xml" value="0.14947916666666666" />
+        <entry key="..\:/Users/lala9/Downloads/Account_Book/Account_Book/app/src/main/res/layout/frame_stats.xml" value="0.1296875" />
+        <entry key="..\:/Users/lala9/Downloads/Account_Book/Account_Book/app/src/main/res/layout/money_input.xml" value="0.264" />
         <entry key="..\:/Users/lala9/Downloads/Account_Book/Account_Book/app/src/main/res/layout/toplayout_view_income.xml" value="0.264" />
         <entry key="..\:/Users/lala9/Downloads/Account_Book/Account_Book/app/src/main/res/layout/toplayout_view_outlay.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/lala9/Downloads/Account_Book/Account_Book/app/src/main/res/menu/bottom_menu.xml" value="0.19739583333333333" />

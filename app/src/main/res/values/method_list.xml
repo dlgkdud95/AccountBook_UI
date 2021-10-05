@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="breakdown">
+    <string-array name="method">
         <item> </item>
         <item>현금</item>
         <item>체크카드</item>

@@ -9,20 +9,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class Flag_income extends Fragment {
-    private View vi_income;
+public class Flag_receipt_view extends Fragment {
 
-    public static Flag_income newinstance() {
-        Flag_income flag_income = new Flag_income();
-        return flag_income;
-    }
-
+    private View view_receipt;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        vi_income = inflater.inflate(R.layout.flag_view_income, container, false);
+        view_receipt = inflater.inflate(R.layout.frame_main, container, false);
 
-        return vi_income;
+        return view_receipt;
     }
 }

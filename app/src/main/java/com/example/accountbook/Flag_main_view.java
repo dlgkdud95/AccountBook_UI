@@ -9,20 +9,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class Flag_outlay extends Fragment {
-    private View vi_outlay;
+public class Flag_main_view extends Fragment {
 
-    public static Flag_outlay newinstance() {
-        Flag_outlay flag_outlay = new Flag_outlay();
-        return flag_outlay;
-    }
-
+    private View view_main;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        vi_outlay = inflater.inflate(R.layout.flag_view_outlay, container, false);
+        view_main = inflater.inflate(R.layout.frame_main, container, false);
 
-        return vi_outlay;
+        return view_main;
     }
 }
